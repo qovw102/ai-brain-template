@@ -1,6 +1,6 @@
 # AI Brain Template
 
-這是一個可 fork / use template 的 AI agent 共用大腦範本。它把 Codex、Antigravity 與其他 agent 會用到的 reusable skills、reference、全域規則範本與同步腳本放在同一個 Git repository。
+這是一個 AI agent 共用大腦範本。它把 Codex、Antigravity 與其他 agent 會用到的 reusable skills、reference、全域規則範本與同步腳本放在同一個 Git repository。
 
 ## 你會得到什麼
 
@@ -54,20 +54,8 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -File "$BrainPath\scripts\Inst
 
 Codex 與 Antigravity 的全域 rule 也會要求 agent 在新 session 開始時先執行 `Check`。如果遠端有更新，agent 應提醒使用者；只有在工作區乾淨且可 fast-forward 時才執行 `Pull`。
 
-## GitHub CLI
-
-GitHub CLI 可用來建立 repository、登入 GitHub 與推送 template：
-
-```powershell
-winget install --id GitHub.cli -e --source winget
-gh auth login --hostname github.com --git-protocol https --web
-gh auth status
-```
-
 ## 安全原則
 
 - 不要提交 PAT、API Key、密碼、私鑰或登入檔。
-- 不要把個人、公司、客戶或專案敏感資訊放進公開 template。
-- 先把 template fork 成自己的 private/public repo，再依個人需求修改。
 - 修改前先同步；有未提交變更時不要直接 pull。
 - 自動拉取使用 `git pull --ff-only`，避免產生難以理解的 merge commit。
