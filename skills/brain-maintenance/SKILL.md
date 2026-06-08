@@ -1,6 +1,6 @@
 ---
 name: brain-maintenance
-description: 建立、更新與同步共用 AI 第二大腦。Create or update shared skills and references, sync the AI brain repository, validate structure, and commit/push changes when requirements or reusable agent knowledge change.
+description: 建立、更新、測試與同步共用 AI 第二大腦。Use when creating or revising shared skills, defining skill triggers and descriptions, organizing references/scripts, validating reusable agent workflows, or syncing and committing AI brain changes.
 ---
 
 # AI 第二大腦維護
@@ -28,11 +28,27 @@ description: 建立、更新與同步共用 AI 第二大腦。Create or update s
    - 檔名為 `SKILL.md`；
    - 包含 YAML frontmatter；
    - `description` 清楚說明用途與觸發時機。
-7. 使用繁體中文撰寫主體；必要時在 `description` 保留英文技術關鍵字，增加不同模型的辨識穩定性。
-8. 驗證檔案結構、frontmatter、腳本語法與 Git diff。
-9. 更新 `<BrainPath>\progress.md` 的狀態與 TODO。
-10. 只 stage 本次相關檔案，建立 commit 並 push 至 `origin/main`。
-11. 回報變更檔案、commit SHA、push 結果與其他電腦是否需要 pull。
+7. 建立或大幅修改 Skill 前，先定義：
+   - 使用者會在什麼情境下需要它；
+   - 哪些具體說法應觸發它；
+   - 哪些相似情境不應觸發它。
+8. 撰寫 `description` 時，同時包含 Skill 的功能與明確觸發情境；避免只寫抽象功能名稱，降低 under-trigger。
+9. 語言與可維護性：
+   - `SKILL.md` 主體、`references/` 主體、README 與 progress 紀錄預設使用繁體中文；
+   - 必要時只在 frontmatter `description`、命令、API 名稱、錯誤訊息或技術關鍵字保留英文；
+   - 若為特定工具相容性必須使用英文，需在 progress 或回報中說明原因。
+10. 依內容特性分流：
+   - 核心、必要且簡短的執行流程留在 `SKILL.md`；
+   - 大型背景知識、政策、規格與範例拆到 `references/`，由 `SKILL.md` 說明何時讀取；
+   - 重複性高、需要精確或穩定執行的操作放進 `scripts/`，並實際執行驗證。
+11. 對複雜或高影響 Skill 設計 2 至 3 個測試 prompt，至少涵蓋：
+   - 應正確觸發並完成工作的正常案例；
+   - 容易漏觸發的同義或間接說法；
+   - 必要時加入不應觸發的邊界案例。
+12. 驗證檔案結構、frontmatter、觸發描述、測試 prompt、腳本語法與 Git diff。簡單修改可省略測試 prompt，但需說明風險低的原因。
+13. 更新 `<BrainPath>\progress.md` 的狀態與 TODO。
+14. 只 stage 本次相關檔案，建立 commit 並 push 至 `origin/main`。
+15. 回報變更檔案、驗證結果、commit SHA、push 結果與其他電腦是否需要 pull。
 
 ## 安全限制
 
