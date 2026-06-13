@@ -14,11 +14,11 @@ description: 建立、更新、測試與同步共用 AI 第二大腦。Use when 
    - `<BrainPath>\README.md`
    - `<BrainPath>\progress.md`
    - `<BrainPath>\references\brain-sync-policy.md`
-3. 執行同步檢查：
+3. 執行安全同步：
    ```powershell
-   powershell.exe -NoProfile -ExecutionPolicy Bypass -File <BrainPath>\scripts\Sync-MyAiBrain.ps1 -Mode Check
+   powershell.exe -NoProfile -ExecutionPolicy Bypass -File <BrainPath>\scripts\Sync-MyAiBrain.ps1 -Mode Pull
    ```
-4. 若本機乾淨且遠端有更新，使用 `-Mode Pull` 以 fast-forward 方式同步。
+4. 若腳本因本機未提交變更或分支分歧而停止，先處理或清楚回報，不強制覆蓋。
 5. 判斷內容位置：
    - 可重複執行的任務流程：建立或更新 `skills/<名稱>/SKILL.md`。
    - 長篇政策、說明、背景知識：建立或更新 `references/<名稱>.md`。

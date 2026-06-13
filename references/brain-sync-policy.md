@@ -6,11 +6,11 @@ GitHub repository 是交換中心。每台電腦各有一份本機 clone，Codex
 
 ## 開始工作前
 
-1. 執行 `Sync-MyAiBrain.ps1 -Mode Check`。
-2. 若顯示落後且本機工作區乾淨，執行 `-Mode Pull`。
-3. 若有本機未提交變更，先檢查、commit 或處理後再 pull。
+1. 執行 `Sync-MyAiBrain.ps1 -Mode Pull`。
+2. 腳本只會在本機工作區乾淨且可 fast-forward 時自動更新。
+3. 若有本機未提交變更或分支分歧，先檢查、commit 或處理後再同步。
 
-Codex 與 Antigravity 的全域 rule 會要求 Agent 在新 session 開始時先執行 Check。這是開工前的安全提醒，避免使用舊版 Skill。
+Codex 與 Antigravity 的全域 rule 會要求 Agent 在新 session 開始時執行安全 Pull，避免使用舊版 Skill。
 
 ## 完成大腦更新後
 
@@ -23,16 +23,18 @@ Codex 與 Antigravity 的全域 rule 會要求 Agent 在新 session 開始時先
 
 - `Setup-BrainOnWindows.ps1`：每台電腦初次安裝或要重建 Codex/Antigravity skills 連結時執行。
 - `Sync-MyAiBrain.ps1`：日常同步主腳本。`-Mode Check` 只檢查遠端狀態並寫入 `.sync-status.log`；`-Mode Pull` 只在工作區乾淨且可 fast-forward 時拉取更新。
-- `Install-BrainSyncTask.ps1`：每台電腦安裝一次即可。它會建立 Windows Task Scheduler 工作，預設每天固定時間與使用者登入時執行 `Sync-MyAiBrain.ps1 -Mode Check`。
+- `Install-BrainSyncTask.ps1`：每台電腦安裝一次即可。它會建立 Windows Task Scheduler 工作，預設每天固定時間與使用者登入時執行 `Sync-MyAiBrain.ps1 -Mode Pull`。
 
-## 定期檢查
+## 自動同步
 
-Windows Task Scheduler 執行 Check 模式：
+Windows Task Scheduler 執行安全 Pull 模式：
 
-- 只執行 `git fetch` 和比較 commit。
-- 不自動 pull，不改工作檔。
-- 結果寫入 `.sync-status.log`。
+- 先執行 `git fetch` 和比較 commit。
+- 工作區乾淨、分支未分歧且可 fast-forward 時，自動執行 `git pull --ff-only`。
+- 工作區有未提交變更或歷史分歧時停止，不覆蓋本機內容。
+- 所有檢查、拉取、跳過與失敗結果都寫入 `.sync-status.log`。
 - 預設每日執行一次，並在使用者登入 Windows 時執行一次。
+- 錯過指定時間時由 `StartWhenAvailable` 補跑；暫時失敗時每 10 分鐘重試，最多 3 次。
 
 ## 衝突處理
 

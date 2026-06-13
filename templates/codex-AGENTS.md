@@ -6,10 +6,10 @@ When the user asks to create, update, review, or synchronize reusable skills, re
 At the beginning of a new agent session, or before work that depends on shared skills/references, run:
 
 ```powershell
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File "{{BRAIN_PATH}}\scripts\Sync-MyAiBrain.ps1" -Mode Check
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File "{{BRAIN_PATH}}\scripts\Sync-MyAiBrain.ps1" -Mode Pull
 ```
 
-If the shared brain is behind, tell the user and run `-Mode Pull` only when the worktree is clean and a fast-forward pull is safe. If there are local changes, stop and explain what must be committed or resolved first.
+The sync script automatically pulls only when the worktree is clean and a fast-forward update is safe. If it reports local changes or diverged history, stop and explain what must be committed or resolved first.
 
 For every user-requested action that changes files or project state:
 

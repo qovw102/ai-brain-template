@@ -44,15 +44,17 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -File "$BrainPath\scripts\Sync
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File "$BrainPath\scripts\Sync-MyAiBrain.ps1" -Mode Pull
 ```
 
-安裝 Windows 自動檢查排程：
+安裝 Windows 自動同步排程：
 
 ```powershell
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File "$BrainPath\scripts\Install-BrainSyncTask.ps1"
 ```
 
-排程預設會在每天指定時間與 Windows 使用者登入時執行 `Check`。它只會 `fetch` 與記錄狀態，不會自動覆蓋本機變更。
+排程預設會在每天指定時間與 Windows 使用者登入時執行安全 `Pull`。它只在工作區乾淨、歷史未分歧且可 fast-forward 時自動更新；有未提交變更或衝突風險時會停止並寫入 `.sync-status.log`，不會覆蓋本機內容。
 
-Codex 與 Antigravity 的全域 rule 也會要求 agent 在新 session 開始時先執行 `Check`。如果遠端有更新，agent 應提醒使用者；只有在工作區乾淨且可 fast-forward 時才執行 `Pull`。
+若電腦在原訂時間關機，`StartWhenAvailable` 會在之後補跑；預設登入觸發也會在下一次開機並登入時立即同步。若網路暫時不可用，排程每 10 分鐘重試，最多 3 次。
+
+Codex 與 Antigravity 的全域 rule 也會要求 agent 在新 session 開始時執行安全 `Pull`。若腳本因本機變更或分歧而停止，agent 應提醒使用者處理。
 
 ## 安全原則
 
