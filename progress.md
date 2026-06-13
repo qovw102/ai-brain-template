@@ -27,6 +27,7 @@
 - 排程註冊成功，action 使用 `-Mode Pull`，並確認 `StartWhenAvailable=True`、登入觸發、電池模式及每 10 分鐘重試 3 次。
 - 私人 repo 與 template 的 `Sync-MyAiBrain.ps1` SHA-256 完全一致。
 - 舊 `Check My AI Brain Updates` 排程可由新版安裝腳本自動移除，並建立名稱與行為一致的 `Sync My AI Brain Updates`。
+- 實機手動觸發新排程成功：`LastTaskResult=0`，同步 log 顯示 repository 已是最新。
 
 ## TODO
 
@@ -34,5 +35,6 @@
 
 ## Git Checkpoint
 
-- Commit：本次提交（`feat: automate safe brain updates`）。
-- Push：待執行。
+- 功能 Commit：`883a439`（`feat: automate safe brain updates`）。
+- Checkpoint Commit：本次提交（`docs: record automatic sync checkpoint`）。
+- Push：成功推送至 `origin/main`。
