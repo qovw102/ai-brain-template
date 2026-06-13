@@ -8,7 +8,7 @@
 - `references/`：較長的政策、背景知識與操作說明。
 - `scripts/`：Windows 安裝、同步與排程腳本。
 - `templates/`：Codex / Antigravity 全域 rule 範本。
-- `progress.example.md`：可複製成 `progress.md` 的狀態紀錄範例。
+- `progress.md`：記錄目前狀態、已完成事項、重要決策、驗證結果、TODO 與 Git checkpoint。
 
 ## 建立自己的 AI brain
 
@@ -27,8 +27,6 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -File "$BrainPath\scripts\Setu
 ```
 
 若該電腦已有 skills 資料夾或連結，腳本會先詢問是否取代。輸入 `YES` 才會處理；一般資料夾會先備份再建立連結。自動化安裝可加上 `-ReplaceExistingSkills`。
-
-4. 建議將 `progress.example.md` 複製成 `progress.md`，用來記錄自己的變更、TODO 與 Git checkpoint。
 
 ## 日常同步
 
