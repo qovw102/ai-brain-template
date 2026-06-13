@@ -41,14 +41,22 @@ description: 建立、更新、測試與同步共用 AI 第二大腦。Use when 
    - 核心、必要且簡短的執行流程留在 `SKILL.md`；
    - 大型背景知識、政策、規格與範例拆到 `references/`，由 `SKILL.md` 說明何時讀取；
    - 重複性高、需要精確或穩定執行的操作放進 `scripts/`，並實際執行驗證。
-11. 對複雜或高影響 Skill 設計 2 至 3 個測試 prompt，至少涵蓋：
+11. 控制 Skill 長度與 progressive disclosure：
+   - `SKILL.md` 理想約 1,000 至 3,000 字元、30 至 120 行；
+   - 3,000 至 8,000 字元仍可接受，但需刪除模型已具備的通用說明與重複範例；
+   - 超過約 8,000 至 10,000 字元、接近 300 行，或包含大量選項與領域知識時，應開始拆到 `references/`；
+   - 不得超過約 5,000 words 或 500 行；接近上限前必須拆分；
+   - API 文件、schema、長篇政策、疑難排解表、超過 3 至 5 個完整範例，以及僅部分任務會使用的進階內容放進 `references/`；
+   - 超過 100 行的 reference 在頂部加入目錄，並由 `SKILL.md` 直接說明何時讀取；避免 references 彼此深層連結；
+   - 同一內容只存在於 `SKILL.md` 或 reference 其中一處，避免重複與版本漂移。
+12. 對複雜或高影響 Skill 設計 2 至 3 個測試 prompt，至少涵蓋：
    - 應正確觸發並完成工作的正常案例；
    - 容易漏觸發的同義或間接說法；
    - 必要時加入不應觸發的邊界案例。
-12. 驗證檔案結構、frontmatter、觸發描述、測試 prompt、腳本語法與 Git diff。簡單修改可省略測試 prompt，但需說明風險低的原因。
-13. 更新 `<BrainPath>\progress.md` 的狀態與 TODO。
-14. 只 stage 本次相關檔案，建立 commit 並 push 至 `origin/main`。
-15. 回報變更檔案、驗證結果、commit SHA、push 結果與其他電腦是否需要 pull。
+13. 驗證檔案結構、frontmatter、觸發描述、測試 prompt、腳本語法與 Git diff。簡單修改可省略測試 prompt，但需說明風險低的原因。
+14. 更新 `<BrainPath>\progress.md` 的狀態與 TODO。
+15. 只 stage 本次相關檔案，建立 commit 並 push 至 `origin/main`。
+16. 回報變更檔案、驗證結果、commit SHA、push 結果與其他電腦是否需要 pull。
 
 ## 安全限制
 

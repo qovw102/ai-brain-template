@@ -10,6 +10,12 @@
 - `templates/`：Codex / Antigravity 全域 rule 範本。
 - `progress.md`：記錄目前狀態、已完成事項、重要決策、驗證結果、TODO 與 Git checkpoint。
 
+預設內建三個核心 Skills：
+
+- `auto-logging`：維護專案進度、TODO、commit 與 push checkpoint。
+- `brain-maintenance`：建立、更新、驗證與同步共用 AI brain。
+- `git-project-sync`：檢查任意 Git 專案的本機與遠端差異，安全 pull 或分析 merge。
+
 ## 建立自己的 AI brain
 
 1. 在 GitHub 使用此 template 建立你自己的 repository。
