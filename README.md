@@ -60,6 +60,16 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -File "$BrainPath\scripts\Inst
 
 Codex 與 Antigravity 的全域 rule 也會要求 agent 在新 session 開始時執行安全 `Pull`。若腳本因本機變更或分歧而停止，agent 應提醒使用者處理。
 
+## 長對話交接
+
+若某個 AI agent 沒有內建 compact 或上下文壓縮功能，可使用：
+
+```text
+請使用 $context-handoff，將目前工作整理成可貼到新對話的繁體中文交接摘要。
+```
+
+這個 Skill 不會真正改寫模型內部上下文，而是產出可續作的精簡摘要，保留目標、狀態、決策、相關檔案、已執行命令、待辦與下一步。
+
 ## 安全原則
 
 - 不要提交 PAT、API Key、密碼、私鑰或登入檔。
