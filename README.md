@@ -10,11 +10,12 @@
 - `templates/`：Codex / Antigravity 全域 rule 範本。
 - `progress.md`：記錄目前狀態、已完成事項、重要決策、驗證結果、TODO 與 Git checkpoint。
 
-預設內建三個核心 Skills：
+預設內建四個核心 Skills：
 
 - `auto-logging`：維護專案進度、TODO、commit 與 push checkpoint。
 - `brain-maintenance`：建立、更新、驗證與同步共用 AI brain。
 - `git-project-sync`：檢查任意 Git 專案的本機與遠端差異，安全 pull 或分析 merge。
+- `context-handoff`：產生可貼到新對話或交給其他 agent 的繁體中文續作摘要。
 
 ## 建立自己的 AI brain
 
@@ -69,6 +70,13 @@ Codex 與 Antigravity 的全域 rule 也會要求 agent 在新 session 開始時
 ```
 
 這個 Skill 不會真正改寫模型內部上下文，而是產出可續作的精簡摘要，保留目標、狀態、決策、相關檔案、已執行命令、待辦與下一步。
+
+這和 `progress.md` / TODO 不衝突，兩者用途不同：
+
+- `progress.md` / TODO 是 repository 的長期紀錄。只要有檔案、設定、流程、Skill 或專案狀態變更，就要更新，並隨 commit 一起保存。
+- `$context-handoff` 是對話交接摘要。當目前 thread 太長、要換到其他 agent，或需要人工複製一份續作脈絡時使用。
+
+簡單判斷：如果內容是「這個 repo 之後也需要知道的事」，寫進 `progress.md`；如果內容是「下一個對話要接著做需要知道的事」，用 `$context-handoff` 產生摘要。遇到長任務結束時，兩者可以同時做：先更新 `progress.md` 與 TODO，再產生交接摘要。
 
 ## 安全原則
 
