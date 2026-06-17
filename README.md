@@ -10,12 +10,13 @@
 - `templates/`：Codex / Antigravity 全域 rule 範本。
 - `progress.md`：記錄目前狀態、已完成事項、重要決策、驗證結果、TODO 與 Git checkpoint。
 
-預設內建四個核心 Skills：
+預設內建五個核心 Skills：
 
 - `auto-logging`：維護專案進度、TODO、commit 與 push checkpoint。
 - `brain-maintenance`：建立、更新、驗證與同步共用 AI brain。
 - `git-project-sync`：檢查任意 Git 專案的本機與遠端差異，安全 pull 或分析 merge。
 - `context-handoff`：產生可貼到新對話或交給其他 agent 的繁體中文續作摘要。
+- `project-brief-html`：將 README、Git log、progress 或 issue 紀錄整理成 Notion-style HTML 專案簡報；預設單一 HTML，長期維護時可改多檔案模式。
 
 ## 建立自己的 AI brain
 

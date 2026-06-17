@@ -13,7 +13,7 @@
 - [x] 將同步結果、跳過原因與失敗狀態寫入 `.sync-status.log`。
 - [x] 更新 Codex / Antigravity 全域規則，讓新 session 優先安全同步。
 - [x] 移除不再使用的 `progress.example.md`，由 `progress.md` 直接作為狀態、TODO 與 Git checkpoint 紀錄。
-- [x] 預設提供 `auto-logging`、`brain-maintenance`、`git-project-sync`、`context-handoff` 四個核心 Skills。
+- [x] 預設提供 `auto-logging`、`brain-maintenance`、`git-project-sync`、`context-handoff`、`project-brief-html` 五個核心 Skills。
 - [x] 將 Skill 長度與 reference 拆分門檻加入 `brain-maintenance`。
 - [x] 新增 `context-handoff`，並釐清其與 `progress.md` / TODO 的分工。
 
@@ -38,6 +38,8 @@
 - 已確認 repository 中除 README 外沒有其他 `progress.example.md` 依賴；移除後所有規則仍直接指向 `progress.md`。
 - 三個核心 Skill 均包含有效 frontmatter；`brain-maintenance` 已包含 5,000 words / 500 行上限警戒與 references 分流規則。
 - `README.md` 與 `skills/context-handoff/SKILL.md` 已補充 `progress.md` / TODO 與交接摘要的使用情境分工。
+- 已新增 `project-brief-html` Skill，用於將專案文件、Git log、progress 或 issue 紀錄整理成 Notion-style HTML 專案簡報。
+- `project-brief-html` 已加入輸出模式判斷：預設單一 HTML 交付版，長期維護時改用多檔案 source，模糊情境先詢問使用者。
 
 ## TODO
 
@@ -50,4 +52,5 @@
 - Progress 文件簡化：本次提交（`docs: use progress file directly`）。
 - 核心 Skills 與長度規則：本次提交（`feat: standardize core brain skills`）。
 - Context handoff 分工說明：本次提交（`docs: clarify handoff and progress roles`）。
+- Project brief HTML Skill：本次提交（`feat: add project brief html skill`）。
 - Push：成功推送至 `origin/main`。
